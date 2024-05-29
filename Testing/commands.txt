@@ -1,0 +1,37 @@
+WHOLE PROCESS
+time (bzip2 -vk readSensorData5.csv && openssl enc -aes-256-cbc -pbkdf2 -in readSensorData5.csv.bz2 -out readSensorData5out.txt.bz2 -pass pass:ethan && rm readSensorData5.csv.bz2  && openssl enc -d -aes-256-cbc -pbkdf2 -in readSensorData5out.txt.bz2 -out readSensorData5.txt.bz2 -pass pass:ethan && bzip2 -d readSensorData5.txt.bz2 && rm readSensorData5out.txt.bz2)
+time (bzip2 -vk readSensorData30.csv && openssl enc -aes-256-cbc -pbkdf2 -in readSensorData30.csv.bz2 -out readSensorData30out.txt.bz2 -pass pass:ethan && rm readSensorData30.csv.bz2  && openssl enc -d -aes-256-cbc -pbkdf2 -in readSensorData30out.txt.bz2 -out readSensorData30.txt.bz2 -pass pass:ethan && bzip2 -d readSensorData30.txt.bz2 && rm readSensorData30out.txt.bz2)
+time (bzip2 -vk readSensorData60.csv && openssl enc -aes-256-cbc -pbkdf2 -in readSensorData60.csv.bz2 -out readSensorData60out.txt.bz2 -pass pass:ethan && rm readSensorData60.csv.bz2  && openssl enc -d -aes-256-cbc -pbkdf2 -in readSensorData60out.txt.bz2 -out readSensorData60.txt.bz2 -pass pass:ethan && bzip2 -d readSensorData60.txt.bz2 && rm readSensorData60out.txt.bz2)
+
+FIRST HALF
+time (bzip2 -vk readSensorData60.csv && openssl enc -aes-256-cbc -pbkdf2 -in readSensorData60.csv.bz2 -out readSensorData60out.txt.bz2 -pass pass:ethan && rm readSensorData60.csv.bz2)
+
+SECOND HALF
+time (openssl enc -d -aes-256-cbc -pbkdf2 -in readSensorData60out.txt.bz2 -out readSensorData60.txt.bz2 -pass pass:ethan && bzip2 -d readSensorData60.txt.bz2 && rm readSensorData60out.txt.bz2)
+
+COMP
+time bzip2 -vk readSensorData30.csv
+time bzip2 -vk readSensorData60.csv 
+
+ENCR
+time openssl enc -aes-256-cbc -pbkdf2 -in readSensorData30.csv.bz2 -out readSensorData30out.txt.bz2 -pass pass:ethan
+time openssl enc -aes-256-cbc -pbkdf2 -in readSensorData60.csv.bz2 -out readSensorData60out.txt.bz2 -pass pass:ethan 
+
+DECR
+time openssl enc -d -aes-256-cbc -pbkdf2 -in readSensorData30out.txt.bz2 -out readSensorData30.txt.bz2 -pass pass:ethan
+time openssl enc -d -aes-256-cbc -pbkdf2 -in readSensorData60out.txt.bz2 -out readSensorData60.txt.bz2 -pass pass:ethan
+
+DECOMP
+time bzip2 -d readSensorData30.txt.bz2
+time bzip2 -d readSensorData60.txt.bz2
+
+
+***state that delay has been set to 1.5 secs.
+DEMO
+
+bzip2 -vk readSensorData.csv && openssl enc -aes-256-cbc -pbkdf2 -in readSensorData.csv.bz2 -out readSensorDataout.txt.bz2 -pass pass:ethan && rm readSensorData.csv.bz2  && openssl enc -d -aes-256-cbc -pbkdf2 -in readSensorDataout.txt.bz2 -out readSensorData.txt.bz2 -pass pass:ethan && bzip2 -d readSensorData.txt.bz2 && rm readSensorDataout.txt.bz2
+
+bzip2 -k readSensorData.csv
+openssl enc -aes-256-cbc -pbkdf2 -in readSensorData.csv.bz2 -out readSensorDataout.txt.bz2 -pass pass:ethan
+openssl enc -d -aes-256-cbc -pbkdf2 -in readSensorDataout.txt.bz2 -out readSensorData.txt.bz2 -pass pass:ethan
+bzip2 -d readSensorData.txt.bz2
